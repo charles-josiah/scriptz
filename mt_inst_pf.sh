@@ -1,4 +1,4 @@
-#Script "feio" instalacao basica do Software de Monitoramento da Multitask - MTMON no pfsense
+#Script instalacao basica do Software de Monitoramento da Multitask - MTMON no pfsense
 #Versao 1.0 alfa do beta
 #Autor: Charles Alandt - charles.alandt@gmail.com
 
