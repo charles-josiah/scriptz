@@ -6,8 +6,7 @@ bkp_rtr_3com.sh - Script "baita" para backup via expect para backup de roteadore
 bkp_sw_3com.sh - Script "baita" para backup via expect para backup de switch 3COM das series SuperStack<br>
 bkp_sw_dell.sh - Script "baita" para backup via expect para backup de switchs da DELL <br>
 bkp_pfsense.sh - Script "baita" para backup do PFSENSE em bash<br>
-bkp_servidores.sh - Script "baita" para backup de arquivos e diretorios, regras de firewall e roteamento de um servidor linux. Este backup suporta backups full e incrementais. Neste script realiza 1 backup full por semana, e demais serão incrementais.
-<br>
+bkp_servidores.sh - Script "baita" para backup de arquivos e diretorios, regras de firewall e roteamento de um servidor linux. Este backup suporta backups full e incrementais.
 <h6>
 Obs.: Maioria destes scriptz foram utilizados para resolver problemas pontuais, não possuem nenhum "boniteza" e organização nos mesmos.
 </h6>
