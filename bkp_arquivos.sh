@@ -17,7 +17,7 @@ cmdPQP="rm -rf"
 
 nomeArquivoBackup="backup.`date +%Y%m%d"_"%H%M%S`.tar.bz2"
 
-arquivoBackup=("/home/charles/Desktop/Arqz/Pessoal") 
+arquivoBackup=("<dir para backup> <dir2 para backup>") 
 
 #montar="mount"
 #desMontar="umount"
