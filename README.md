@@ -8,6 +8,7 @@ Scrips Gerais, Geniais, Genéricos e algumas adaptações técnicas  :D <br>
  <li> bkp_sw_dell.sh - Script "baita" para backup via expect para backup de switchs da DELL </li>
  <li> bkp_pfsense.sh - Script "baita" para backup do PFSENSE em bash</li>
  <li> bkp_servidores.sh - Script "baita" para backup em s hell script, de arquivos e diretorios, regras de firewall, roteamento, sincronismos de pastas, manda email, gera backup incremental/full, copia para disco Dell RDXXXX/Externos e manda email para avisar que acabou com status da execução. </li>
+ <li> bkp_arquivos.sh - Mais um script "baita" para backup de dados, porem, esse criptografa os dados.</li>
  <li> get_usuario_email_ldap.pl - Busta lista de usuarios num servidor ldap  com o atributo objectClass=mailUser.
  <li> criar_usuarios_zimbra.sh - Script "marreta", quase um martelo de Thor, para criar/alterar usuarios no zimbra (esse é feio.... mas funciona :D). Ultima alteração: 03/11/2015 :D
   <li> ldif2csv.pl - Script perl para converter arquivo ldif para csv.
