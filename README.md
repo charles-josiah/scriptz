@@ -14,7 +14,8 @@ Scrips Gerais, Geniais, Genéricos e algumas adaptações técnicas  :D <br>
  <li> add_mod_usuarios_zimbra.sh - Script "marreta", quase um martelo de Thor, para criar/alterar usuarios no zimbra (esse é feio.... mas funciona :D). Ultima alteração: 03/11/2015 :D
   <li> ldif2csv.pl - Script perl para converter arquivo ldif para csv.
        esse script não é meu, segue link do original: http://painfullscratch.nl/code/ldif2csv.pl </li>
- <li>  zbx_mtmon.sh - Add script de integração do Zabbix com  MTMON </li>
+ <li> zbx_mtmon.sh - Add script de integração do Zabbix com  MTMON </li>
+ <li> zimbra_cota_user.sh	- Script gera informações usuarios de dominio no zimbra, no formato: </li>
 </ul>
 
 <h6>
