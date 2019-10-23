@@ -13,5 +13,5 @@ for dominio in ` zmprov gad `; do
 		e=`echo $a | awk -F";" '{print $3 }' ` 
 		let total=$total+$e
 	done 
-	echo " Dominio: $dominio utilizado: `echo  ${total}/1024/1024/1024 | bc` Gb "
+	echo " Dominio: $dominio - utilizado: `echo  ${total}/1024/1024/1024 | bc` Gb "
 done
