@@ -17,7 +17,8 @@ Scrips Gerais, Geniais, Genéricos e algumas adaptações técnicas  :D <br>
  <li> zbx_mtmon.sh - Add script de integração do Zabbix com  MTMON </li>
  <li> zimbra_cota_user.sh	- Script gera informações usuarios de dominio no zimbra, no formato: email;DisplayName;Cota;Cota Utilizada;Status </li>
  <li> zimbra_cota_dominio.sh - Script de informações do tamanho de um dominio no zimbra </li>
-</ul>
+ <li> zimbra_limpa_dom_invalidos.sh - Script que limpa fila com dominios invalidos no postfix do zimbra.  </li>
+</ul> 
 
 <h6>
 Obs.: Maioria destes scriptz foram utilizados para resolver problemas pontuais, a alguns são de muito, muito tempo atrás, não possuem nenhum "boniteza" e organização nos mesmos.
