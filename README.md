@@ -18,6 +18,7 @@ Scrips Gerais, Geniais, Genéricos e algumas adaptações técnicas  :D <br>
  <li> zimbra_cota_user.sh	- Script gera informações usuarios de dominio no zimbra, no formato: email;DisplayName;Cota;Cota Utilizada;Status </li>
  <li> zimbra_cota_dominio.sh - Script de informações do tamanho de um dominio no zimbra </li>
  <li> zimbra_limpa_dom_invalidos.sh - Script que limpa fila com dominios invalidos no postfix do zimbra.  </li>
+ <li> zimbra_dataExpiraSenha.sh	- Script que gera relatorio com a data de expiração ou se a senha expirada no zimbra.   </li>
 </ul> 
 
 <h6>
