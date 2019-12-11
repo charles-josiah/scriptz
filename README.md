@@ -24,5 +24,5 @@ Scrips Gerais, Geniais, Genéricos e algumas adaptações técnicas  :D <br>
 </ul> 
 
 <h6>
-Obs.: Maioria destes scriptz foram utilizados para resolver problemas pontuais, a alguns são de muito, muito tempo atrás, não possuem nenhum "boniteza" e organização nos mesmos.
+Obs.: Maioria destes scriptz foram utilizados para resolver problemas pontuais, a alguns são de muito, muito tempo atrás, não possuem nenhuma "boniteza" e organização nos mesmos.
 </h6>
