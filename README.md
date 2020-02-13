@@ -16,6 +16,7 @@ Scrips Gerais, Geniais, Genéricos e algumas adaptações técnicas  :D <br>
        esse script não é meu, segue link do original: http://painfullscratch.nl/code/ldif2csv.pl </li>
  <li> zbx_mtmon.sh - Add script de integração do Zabbix com  MTMON </li>
  <li> zimbra_cota_user.sh	- Script gera informações usuarios de dominio no zimbra, no formato: email;DisplayName;Cota;Cota Utilizada;Status </li>
+ <li> zimbra_cota_user_v2.sh - Script com melhoramentos do script zimbra_cota_user.sh. Alerta de cotas acima do limite via email e monitoramento.
  <li> zimbra_cota_dominio.sh - Script de informações do tamanho de um dominio no zimbra </li>
  <li> zimbra_limpa_dom_invalidos.sh - Script que limpa fila com dominios invalidos no postfix do zimbra.  </li>
  <li> zimbra_dataExpiraSenha.sh	- Script que gera relatorio com a data de expiração ou se a senha expirada no zimbra.   </li>
