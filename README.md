@@ -1,6 +1,4 @@
-# Scriptz e Comandos rapidos
-
-## Scripts
+# Scriptz 
 Scrips Gerais, Geniais, Genéricos e algumas adaptações técnicas  :D <br>
 
 <ul> 
@@ -26,18 +24,6 @@ Scrips Gerais, Geniais, Genéricos e algumas adaptações técnicas  :D <br>
  <li> ConverteLogsFortigateSquidIP.pl - Converte log formato syslog do fortigate para formato squid. Possivel gerar relatorios de navegação do Fortigate na ferramenta opensource SARG.
  
 </ul> 
-
-## Comandos rapidos
-
-* Gerar lista com as "Listas de Distribuição" e seus integrantes:
-  ````
-  for a in `zmprov gadl `; do echo "lista: $a" ; zmprov  gdl $a  | grep zimbraMailForwardingAddress | cut -f2 -d " "; echo "-----";  done 
-  ````
-* Ping Multicast em IPv6 - envia uma solicitação de ICMPv6  de 'echo request (type 128)' para 'all-nodes' no endereço multicast. Para ver a vizinhança depois, ip neighbor.
-  ````
-  ping6 -I <interface> ff02::1
-  ip neighbor
-  ````
  
 <h6>
 Obs.: Maioria destes scriptz foram utilizados para resolver problemas pontuais, a alguns são de muito, muito tempo atrás, não possuem nenhuma "boniteza" e organização nos mesmos.
