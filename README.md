@@ -24,6 +24,7 @@ Scrips Gerais, Geniais, Genéricos e algumas adaptações técnicas  :D <br>
  <li> ConverteLogsFortigateSquidIP.pl - Converte log formato syslog do fortigate para formato squid. Possivel gerar relatorios de navegação do Fortigate na ferramenta opensource SARG.
  <li> zimbra_sync_emails.sh - Script para sincronização de contas de emails entre 2 servidores zimbra (ou outro que suporte imap) diferentes. 
  <li> zimbra_restore_agenda_tasks_contato.sh	- Script para restaurar arquivos de backup do zimbra pelo script zimbra_backup_agenda_tasks_contato.sh.
+ <li> zimbra_backup_agenda_tasks_contato.sh	- Script de backup zimbra do agenda tasks e contatos
 </ul> 
  
 <h6>
