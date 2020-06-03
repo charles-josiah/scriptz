@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script de restauração dos arquivos de backup da agenda, tasks  e contatos do zimbra. Gerados pelo zimbra_bkp_agenda_tasks_contato.sh
-# 
+# Script sem data definida de criação... :D 
 
 
 bkpCmd="zmmailbox"
