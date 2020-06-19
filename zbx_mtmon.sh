@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script simples de integração do MTMON (http://mtmon.multitaks.com.br) com Zabbix. 
+# Script simples de integração do MTMON (http://mtmon.multitask.com.br) com Zabbix. 
 # Deve ser adicionado no diretorio: /usr/lib/zabbix/alertscripts/
 # Lembrado que é necessário configurar todo a parte de triggers, actions, comandos, media types, etc...  
 # Desenvolvido por: Charles Josiah (charles.alandt at gmail.com) 
