@@ -4,7 +4,7 @@
 # Lembrado que é necessário configurar todo a parte de triggers, actions, comandos, media types, etc...  
 # Desenvolvido por: Charles Josiah (charles.alandt at gmail.com) 
 # Atualizado: 15/06/2020 - Novas opções :D 
-
+#             22/06/2020 - add campo origem. 
 
 # no subject define os 3 niveis de alerta: 0 1  2
 # na mensagem default, temos os serguintes itens a serem analisados.
@@ -13,9 +13,9 @@
 #  Host: {HOST.NAME}
 #  Severity: {EVENT.SEVERITY}
 #  ID: {EVENT.ID}
+#. origem: origem do evento
 #  objeto: conectividade
 #  procedimento:  link
-
 
 
 
@@ -32,9 +32,10 @@ IFS=$OLDIFS
 echo "--------------" >> $LOG
 serv="`cat $zbx_Ticket  | grep -i host | sed 's/.*://'` " 2>> $LOG
 problema="`cat $zbx_Ticket | grep -i 'Problema: ' | sed 's/Problema://'  `" 2>> $LOG
-zbx_ID="`cat $zbx_Ticket | grep ID  | sed 's/.*://' ` " 2>> $LOG
-objeto="`cat $zbx_Ticket | grep objeto | sed 's/.*://' ` " 2>> $LOG
-procedimento="`cat $zbx_Ticket | grep procedimento |  sed 's/.*://' ` " 2>> $LOG
+zbx_ID="`cat $zbx_Ticket | grep ID  | sed 's/.*://' `" 2>> $LOG
+objeto="`cat $zbx_Ticket | grep objeto | sed 's/.*://' `" 2>> $LOG
+procedimento="`cat $zbx_Ticket | grep procedimento |  sed 's/.*://' `" 2>> $LOG
+origem="`cat $zbx_Ticket | grep origem | sed 's/.*://' `" 2>> $LOG
 
 echo " ticket file: $zbx_Ticket" >> $LOG
 echo " severidade: $2" >> $LOG
@@ -47,10 +48,11 @@ echo " procedimento: $procedimento" >> $LOG
 echo "--------------" >> $LOG
 
 
-$mt_evento  --servidor $serv --aplicacao zabbix --objeto $objeto  --eventual --severidade "$2"  --notifica $procedimento  --mensagem "$problema" --dump $zbx_Ticket
+$mt_evento --origem $origem  --servidor $serv --aplicacao zabbix --objeto $objeto  --eventual --severidade "$3"  --notifica $procedimento  --mensagem "$problema" --dump $zbx_Ticket
 echo "$mt_evento  --servidor $serv --aplicacao zabbix --objeto $objeto  --eventual --severidade $2  --notifica $procedimento --mensagem $problema --dump $3 " >> $LOG
 
 echo >> $LOG 
 echo "-`date `--------------------------------" >> $LOG
+
 
 
