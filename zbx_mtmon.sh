@@ -13,29 +13,38 @@
 #  Host: {HOST.NAME}
 #  Severity: {EVENT.SEVERITY}
 #  ID: {EVENT.ID}
-#. origem: origem do evento
 #  objeto: conectividade
 #  procedimento:  link
-
-
 
 LOG=/var/log/zabbix/zabbix-mtmon.log                            #log da execução para eventual validação
 mt_evento=/usr/local/Multitask/mtmon/bin/mtmon_evento.pl        #local do mtmon_evento para chamada do acionamento.
 rand="`echo $RANDOM`"
 zbx_Ticket="/tmp/zbx.ticket.$rand" 
+d2u=dos2unix
+C_iconv=iconv
 
-OLDIFS=$IFS
-IFS=$'\n'
-echo "$3" > $zbx_Ticket
-IFS=$OLDIFS
+
+echo "----------------------" > $zbx_Ticket
+echo "$1" >> $zbx_Ticket
+echo "$2" >> $zbx_Ticket
+echo "$3" >> $zbx_Ticket
+echo "----------------------" >> $zbx_Ticket
+
+#OLDIFS=$IFS
+#IFS=$'\n'
+#echo "$3" >> $zbx_Ticket
+#IFS=$OLDIFS
+
+$d2u  $zbx_Ticket >> $LOG 
 
 echo "--------------" >> $LOG
 serv="`cat $zbx_Ticket  | grep -i host | sed 's/.*://'` " 2>> $LOG
-problema="`cat $zbx_Ticket | grep -i 'Problema: ' | sed 's/Problema://'  `" 2>> $LOG
+problema="`cat $zbx_Ticket | grep -i 'Problema: ' | sed 's/Problema://' | $C_iconv -f utf8 -t ascii//TRANSLIT  `" 2>> $LOG
 zbx_ID="`cat $zbx_Ticket | grep ID  | sed 's/.*://' `" 2>> $LOG
 objeto="`cat $zbx_Ticket | grep objeto | sed 's/.*://' `" 2>> $LOG
 procedimento="`cat $zbx_Ticket | grep procedimento |  sed 's/.*://' `" 2>> $LOG
 origem="`cat $zbx_Ticket | grep origem | sed 's/.*://' `" 2>> $LOG
+aplicacao="`cat $zbx_Ticket | grep -i 'aplicacao: ' | sed 's/aplicacao://' | $C_iconv -f utf8 -t ascii//TRANSLIT  `" 2>> $LOG
 
 echo " ticket file: $zbx_Ticket" >> $LOG
 echo " severidade: $2" >> $LOG
@@ -48,11 +57,14 @@ echo " procedimento: $procedimento" >> $LOG
 echo "--------------" >> $LOG
 
 
-$mt_evento --origem $origem  --servidor $serv --aplicacao zabbix --objeto $objeto  --eventual --severidade "$3"  --notifica $procedimento  --mensagem "$problema" --dump $zbx_Ticket
-echo "$mt_evento  --servidor $serv --aplicacao zabbix --objeto $objeto  --eventual --severidade $2  --notifica $procedimento --mensagem $problema --dump $3 " >> $LOG
+$mt_evento --origem $origem  --servidor $serv --aplicacao $aplicacao  --objeto $objeto  --eventual --severidade $2 --notifica $procedimento  --mensagem "$problema" --dump $zbx_Ticket 
+
+
+echo "$mt_evento --origem $origem  --servidor $serv --aplicacao $aplicacao  --objeto $objeto  --eventual --severidade $2  --notifica $procedimento --mensagem $problema --dump $3 " >> $LOG
 
 echo >> $LOG 
 echo "-`date `--------------------------------" >> $LOG
+
 
 
 
