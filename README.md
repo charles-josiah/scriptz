@@ -25,6 +25,8 @@ Scrips Gerais, Geniais, Genéricos e algumas adaptações técnicas  :D <br>
  <li> zimbra_sync_emails.sh - Script para sincronização de contas de emails entre 2 servidores zimbra (ou outro que suporte imap) diferentes. 
  <li> zimbra_restore_agenda_tasks_contato.sh	- Script para restaurar arquivos de backup do zimbra pelo script zimbra_backup_agenda_tasks_contato.sh.
  <li> zimbra_backup_agenda_tasks_contato.sh	- Script de backup zimbra do agenda tasks e contatos
+ <li> mk_backup.sh - Script para backup de mikrotiks remotos, script esta "daquele geito" :D 
+ <li> mk_chave.sh - Script copia de chave ssh,  ativação no usuario admin; assim não precisa utilizar usuario/senha no login do admin. Lmebrando, script esta "daquele geito", feito em 5 min, preguiça de fazer tudo na mão :D :D :D  :D 
 </ul> 
  
 <h6>
