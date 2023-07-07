@@ -3,9 +3,9 @@
 #First Review: 2023/07/06
 #PS: Very lazy and ugly script... Please do better than this... :D 
 #PS1: Don't forget to export your temporary keys or use a cloudshell
+#PS2: Do this script better and dont use in production ENV
 #------------------------------
 
-echo "Thanks everone to wathching...."
 echo "Finding and Releasing Unattached Elastic IPs via AWS CLI"
 echo "we use aws cloud shell to be easier... and I am very lazy today :D"
 echo "First, don't forget do export your keys and region" 
