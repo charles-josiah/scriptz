@@ -14,3 +14,4 @@ I'm not proud of these scripts (only a little) :D <br>
  - s3_check_logging.sh - check if S3 logging is active
  - s3_force_ssl.sh - check and setup S3 to use SSL
  - scan-check-certificate-expire.sh - Checking all route53 entries, checking if you have any HTTPs servers, and checking if the certificate will expire less than 20 days, if so, generates a warning.
+ - Finding_and_Releasing_Unattached_EIP.sh - Finding and Releasing Unattached Elastic IPs via AWS CLI
