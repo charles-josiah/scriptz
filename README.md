@@ -28,6 +28,7 @@ Scrips Gerais, Geniais, Genéricos e algumas adaptações técnicas  :D <br>
  <li> mk_backup.sh - Script para backup de mikrotiks remotos, script esta "daquele geito" :D 
  <li> mk_chave.sh - Script copia de chave ssh,  ativação no usuario admin; assim não precisa utilizar usuario/senha no login do admin. Lmebrando, script esta "daquele geito", feito em 5 min, preguiça de fazer tudo na mão :D :D :D  :D 
  <li> backup_dir_mysql.sh - Script for backup some files and dirs, mysqld and send status to the telegram. 
+ <li> c_t_mysql.py - Easy to test the connection with MySQL</li>
 </ul>
 Dir ./aws comecando uma coletania (daquele geito) de scripts para AWS.
  
