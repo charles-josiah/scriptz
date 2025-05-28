@@ -16,7 +16,11 @@ LAN_IFACE="eth1"      # interface interna para os clientes
 echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 sysctl -p
 
+ifup $WAN_IFACE
+ifup $LAN_IFACE
+
 # 2. Configura regras NAT (masquerade)
+apt-get install -y iptables
 iptables -t nat -A POSTROUTING -o $WAN_IFACE -j MASQUERADE
 iptables -A FORWARD -i $LAN_IFACE -o $WAN_IFACE -j ACCEPT
 iptables -A FORWARD -i $WAN_IFACE -o $LAN_IFACE -m state --state ESTABLISHED,RELATED -j ACCEPT
