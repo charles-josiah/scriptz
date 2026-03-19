@@ -31,6 +31,7 @@ General, Brilliant, Generic Scripts and some technical adaptations  :D <br>
  <li> backup_dir_mysql.sh - Script for backup some files and dirs, mysqld and send status to the telegram. 
  <li> c_t_mysql.py - Easy script to test the connection with MySQL</li>
  <li> renova_certificado.sh - Another script to auto-renew certificate </li>
+ <li> another_docker_installer.sh - Yet another Docker & Docker Compose installation script</li>
 </ul>
 Dir ./aws starting a collection (that way) of scripts for AWS.
  
