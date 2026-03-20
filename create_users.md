@@ -31,8 +31,6 @@ This PowerShell script automates the creation of multiple users in Active Direct
 powershell -ExecutionPolicy Bypass -File .\create_users.ps1
 
 
----
-
 ## 📜 Script PowerShell
 
 ```powershell
