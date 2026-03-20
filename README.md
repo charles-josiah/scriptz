@@ -32,6 +32,8 @@ General, Brilliant, Generic Scripts and some technical adaptations  :D <br>
  <li> c_t_mysql.py - Easy script to test the connection with MySQL</li>
  <li> renova_certificado.sh - Another script to auto-renew certificate </li>
  <li> another_docker_installer.sh - Yet another Docker & Docker Compose installation script</li>
+ <li> create_user.md - Active Directory Bulk User Creation Script</li> 
+ 
 </ul>
 Dir ./aws starting a collection (that way) of scripts for AWS.
  
