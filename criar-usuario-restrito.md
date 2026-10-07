@@ -1,6 +1,8 @@
 # criar-usuario-restrito.sh
 
 > Cria um usuário Linux com shell restrito (`rbash`), expondo **somente** uma lista branca de comandos de leitura/monitoramento — ideal para kiosks, ambientes de suporte, acesso temporário de fornecedores e auditores.
+>
+> **Desenvolvido por** [Charles Josiah](https://github.com/charles-josiah) **em colaboração com** [Fabio Ferreira](https://github.com/cwbffm).
 
 ---
 
@@ -202,6 +204,17 @@ Se o usuário estiver logado, encerre as sessões antes:
 sudo pkill -u suporte01
 sudo userdel -r suporte01
 ```
+
+---
+
+## 👥 Autoria e contribuições
+
+| Papel | Pessoa | GitHub |
+|-------|--------|--------|
+| Autor | Charles Josiah | [@charles-josiah](https://github.com/charles-josiah) |
+| Colaborador no desenvolvimento | **Fabio Ferreira** | [@cwbffm](https://github.com/cwbffm) |
+
+> Agradecimento especial a **Fabio Ferreira** ([github.com/cwbffm](https://github.com/cwbffm)) pela colaboração no desenvolvimento deste script.
 
 ---
 

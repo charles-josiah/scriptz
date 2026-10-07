@@ -3,6 +3,9 @@
 # ==========================================
 # CRIAR USUÁRIO RESTRITO COM RBASH (v2)
 # Versão corrigida — ver análise de segurança
+#
+# Autor:  Charles Josiah (https://github.com/charles-josiah)
+# Colaboração: Fabio Ferreira (https://github.com/cwbffm)
 # ==========================================
 
 set -euo pipefail
