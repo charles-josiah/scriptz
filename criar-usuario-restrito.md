@@ -1,54 +1,55 @@
 # criar-usuario-restrito.sh
 
-> Cria um usuário Linux com shell restrito (`rbash`), expondo **somente** uma lista branca de comandos de leitura/monitoramento — ideal para kiosks, ambientes de suporte, acesso temporário de fornecedores e auditores.
+> Creates a Linux user with a restricted shell (`rbash`), exposing **only** a whitelisted set of read-only/monitoring commands — ideal for kiosks, support environments, and temporary vendor/auditor access.
 >
 > **Developed by** [Charles Josiah](https://github.com/charles-josiah) **in collaboration with** [Fabio Ferreira](https://github.com/cwbffm).
 
 ---
 
-## 📋 Índice
+## 📋 Table of contents
 
-- [Visão geral](#-visão-geral)
-- [Requisitos](#-requisitos)
-- [Uso](#-uso)
-- [O que o script faz](#-o-que-o-script-faz)
-- [Comandos permitidos](#-comandos-permitidos)
-- [Modelo de segurança](#-modelo-de-segurança)
-- [Melhorias sobre a versão original](#-melhorias-sobre-a-versão-original)
-- [Limitações conhecidas](#-limitações-conhecidas)
-- [Remover o usuário](#-remover-o-usuário)
-- [Licença](#-licença)
+- [Overview](#-overview)
+- [Requirements](#-requirements)
+- [Usage](#-usage)
+- [What the script does](#-what-the-script-does)
+- [Allowed commands](#-allowed-commands)
+- [Security model](#-security-model)
+- [Improvements over the original version](#-improvements-over-the-original-version)
+- [Known limitations](#-known-limitations)
+- [Removing the user](#-removing-the-user)
+- [Authors and contributors](#-authors-and-contributors)
+- [License](#-license)
 
 ---
 
-## 🧭 Visão geral
+## 🧭 Overview
 
-O script automatiza a criação de um usuário **restrito** no Linux:
+The script automates the creation of a **restricted** Linux user:
 
-| Item | Valor |
+| Item | Value |
 |------|-------|
 | Shell | `/bin/rbash` (restricted bash) |
-| Home | `/home/<usuário>` — **não gravável** pelo usuário (`root:root 755`) |
-| PATH | `$HOME/bin` — apenas comandos da lista branca, `readonly` |
-| Binários | **cópias reais** (não symlinks), pertencentes a `root` |
+| Home | `/home/<user>` — **not writable** by the user (`root:root 755`) |
+| PATH | `$HOME/bin` — whitelist commands only, `readonly` |
+| Binaries | **real copies** (not symlinks), owned by `root` |
 | Config | `.bash_profile` / `.bashrc` → `root:root 444` |
-| Rollback | automático em caso de falha (trap `EXIT`) |
+| Rollback | automatic on any failure (trap `EXIT`) |
 
 ---
 
-## ⚙️ Requisitos
+## ⚙️ Requirements
 
-- Linux com `bash`, `useradd`, `passwd` (qualquer distro RHEL/Debian/Ubuntu com ajustes mínimos)
-- Execução como **root** ou via `sudo`
-- `rbash` disponível — normalmente vem como link do `bash`:
+- Linux with `bash`, `useradd`, `passwd` (any RHEL/Debian/Ubuntu distro with minimal adjustments)
+- Must run as **root** or via `sudo`
+- `rbash` available — usually shipped as a symlink to `bash`:
   ```bash
-  # Verificar / habilitar (Fedora/RHEL/CentOS)
-  ln -sf /bin/bash /bin/rbash   # caso não exista
+  # Check / enable (Fedora/RHEL/CentOS)
+  ln -sf /bin/bash /bin/rbash   # if it does not exist
   ```
 
 ---
 
-## 🚀 Uso
+## 🚀 Usage
 
 ```bash
 git clone https://github.com/charles-josiah/scriptz.git
@@ -57,32 +58,32 @@ chmod +x criar-usuario-restrito.sh
 sudo ./criar-usuario-restrito.sh
 ```
 
-Saída esperada:
+Expected output:
 
 ```text
-Nome do usuário: suporte01
+Username: suporte01
 
-[1/7] Criando usuário...
-[2/7] Defina a senha do usuário:
+[1/7] Creating user...
+[2/7] Set the user password:
 New password: ********
 Retype new password: ********
 passwd: password updated successfully
 
-[3/7] Criando ambiente restrito...
-[4/7] Liberando comandos...
-  Liberado: ls -> /usr/bin/ls
-  Liberado: cat -> /usr/bin/cat
+[3/7] Creating restricted environment...
+[4/7] Enabling commands...
+  Allowed: ls -> /usr/bin/ls
+  Allowed: cat -> /usr/bin/cat
   ...
 
-[7/7] Testando acesso...
-  Teste OK: login restrito funcionando.
+[7/7] Testing access...
+  Test OK: restricted login working.
 
 ======================================
- USUÁRIO CRIADO
+ USER CREATED
 ======================================
 ```
 
-Entrar no usuário:
+Log in as the new user:
 
 ```bash
 su - suporte01
@@ -90,115 +91,115 @@ su - suporte01
 
 ---
 
-## 🧩 O que o script faz
+## 🧩 What the script does
 
-1. **Valida** execução como root e formato do nome de usuário (regex POSIX).
-2. **Cria** o usuário com `useradd -m -s /bin/rbash`.
-3. **Define** a senha interativamente (`passwd`).
-4. **Monta** `$HOME/bin` com cópias dos binários permitidos (`cp`, não symlink).
-5. **Instala** `.bash_profile` e `.bashrc` com `PATH` somente-leitura e limpeza de variáveis de ambiente perigosas (`ENV`, `BASH_ENV`).
-6. **Trava** permissões: home e configs pertencem a `root` e não podem ser alterados pelo usuário.
-7. **Registra** `/bin/rbash` em `/etc/shells` e **testa** o login automaticamente.
-8. Em caso de **qualquer falha**, o script **remove o usuário** criado (rollback via `trap`).
+1. **Validates** that it is running as root and that the username format is valid (POSIX regex).
+2. **Creates** the user with `useradd -m -s /bin/rbash`.
+3. **Sets** the password interactively (`passwd`).
+4. **Builds** `$HOME/bin` with copies of the allowed binaries (`cp`, not symlinks).
+5. **Installs** `.bash_profile` and `.bashrc` with a read-only `PATH` and dangerous environment variables cleared (`ENV`, `BASH_ENV`).
+6. **Locks down** permissions: home and configs are owned by `root` and cannot be changed by the user.
+7. **Registers** `/bin/rbash` in `/etc/shells` and **tests** the login automatically.
+8. On **any failure**, the script **removes the created user** (rollback via `trap`).
 
 ---
 
-## 📦 Comandos permitidos
+## 📦 Allowed commands
 
-Por padrão, a lista branca é:
+By default, the whitelist is:
 
-| Comando | Uso |
-|---------|-----|
-| `ls` | Listar arquivos |
-| `cat` | Exibir conteúdo de arquivos |
-| `grep` | Buscar padrões |
-| `tail` / `head` | Início/fim de arquivos |
-| `date` | Data e hora |
-| `uptime` | Tempo ligado e carga |
-| `df` | Espaço em disco |
-| `du` | Tamanho de diretórios |
-| `free` | Memória |
-| `hostname` | Nome do host |
-| `whoami` | Usuário atual |
-| `id` | UID/GID/grupos |
+| Command | Purpose |
+|---------|---------|
+| `ls` | List files |
+| `cat` | Show file contents |
+| `grep` | Search patterns |
+| `tail` / `head` | Start/end of files |
+| `date` | Date and time |
+| `uptime` | Uptime and load average |
+| `df` | Disk space |
+| `du` | Directory sizes |
+| `free` | Memory usage |
+| `hostname` | Host name |
+| `whoami` | Current user |
+| `id` | UID/GID/groups |
 
-Para **adicionar ou remover** comandos, edite o array `ALLOWED_COMMANDS` no script:
+To **add or remove** commands, edit the `ALLOWED_COMMANDS` array in the script:
 
 ```bash
 ALLOWED_COMMANDS=(
     ls
     cat
     grep
-    # ... adicione aqui
+    # ... add here
 )
 ```
 
-> ⚠️ Veja [Limitações conhecidas](#-limitações-conhecidas) antes de adicionar qualquer coisa.
+> ⚠️ See [Known limitations](#-known-limitations) before adding anything.
 
 ---
 
-## 🔒 Modelo de segurança
+## 🔒 Security model
 
 ```text
-Usuário (rbash)
+User (rbash)
    │
    ├── PATH = $HOME/bin (readonly)
-   │      └── cópias root-owned dos binários permitidos
+   │      └── root-owned copies of allowed binaries
    │
-   ├── Home = root:root 755  → usuário NÃO pode alterar configs
+   ├── Home = root:root 755  → user CANNOT change configs
    │      ├── .bash_profile  (root:root 444)
    │      ├── .bashrc        (root:root 444)
-   │      └── .bash_history  (user:user 600 — apenas histórico)
+   │      └── .bash_history  (user:user 600 — history only)
    │
-   └── Variáveis de escape removidas: ENV, BASH_ENV
+   └── Escape variables removed: ENV, BASH_ENV
 ```
 
-**Princípios aplicados:**
+**Principles applied:**
 
-- **Menor privilégio** — só o estritamente necessário.
-- **Defesa em profundidade** — `rbash` + PATH travado + configs imutáveis + binários root-owned.
-- **Falha segura** — rollback automático evita usuários meio-configurados.
-- **Teste obrigatório** — o script só reporta sucesso após validar o login.
-
----
-
-## ✅ Melhorias sobre a versão original
-
-| # | Problema original | Correção |
-|---|-------------------|----------|
-| 1 | Home `750 user:user` permitia apagar/recriar `.bash_profile` e anular toda a proteção | Home agora é `root:root 755` (não gravável pelo usuário) |
-| 2 | `less`/`more` na lista — ambos permitem escape para shell via `!comando` | Removidos da lista branca |
-| 3 | Symlinks podiam ser alvo de troca | Cópias reais dos binários, `chown root:root` |
-| 4 | Sem validação do nome de usuário | Regex `^[a-z_][a-z0-9_-]{0,31}$` |
-| 5 | Falha em `passwd` deixava usuário meio-criado | `trap EXIT` com rollback automático |
-| 6 | `/etc/shells` inexistente derrubava o script (`set -e`) | `touch` + `grep 2>/dev/null` |
-| 7 | `HISTFILE` declarado `readonly` sem valor definido | Definido, exportado e com `HISTSIZE=500` |
-| 8 | Sem validação do resultado | Teste automático de login ao final |
+- **Least privilege** — only what is strictly necessary.
+- **Defense in depth** — `rbash` + locked PATH + immutable configs + root-owned binaries.
+- **Fail-safe** — automatic rollback prevents half-configured users.
+- **Mandatory test** — the script only reports success after validating the login.
 
 ---
 
-## ⚠️ Limitações conhecidas
+## ✅ Improvements over the original version
 
-`rbash` é uma **barreira leve**, não um sandbox. Leia antes de usar em produção:
-
-- **Nunca adicione** comandos com capacidade de executar shell: `awk` (com `system()`), `sed` com flag `e`, `find -exec`, `xargs`, `man`, `vi/vim`, `python`, `perl`, `less`, `more`, `ssh`, `scp`.
-- **Escalada via kernel**: falhas de kernel (Dirty Pipe, etc.) ignoram qualquer restrição de shell.
-- **Ataques físicos/console**: se o usuário tem acesso à consola, `Ctrl+C`/`Ctrl+Z` e signal handling em `rbash` têm comportamento limitado mas não invulnerável.
-- **Para isolamento real**, use uma das opções abaixo (em ordem de preferência):
-  1. **Container** (Docker/Podman) com user namespace e read-only rootfs;
-  2. **`chroot`** para um filesystem mínimo;
-  3. **`sudo` com allowlist** (`sudo -l`) em vez de shell restrito;
-  4. Contas de serviço com **chave SSH forçada** + `ForceCommand`.
+| # | Original problem | Fix |
+|---|------------------|-----|
+| 1 | Home `750 user:user` allowed deleting/recreating `.bash_profile`, voiding all protection | Home is now `root:root 755` (not writable by the user) |
+| 2 | `less`/`more` on the list — both allow shell escape via `!command` | Removed from the whitelist |
+| 3 | Symlinks could be swapped | Real copies of the binaries, `chown root:root` |
+| 4 | No username validation | Regex `^[a-z_][a-z0-9_-]{0,31}$` |
+| 5 | `passwd` failure left a half-created user | `trap EXIT` with automatic rollback |
+| 6 | Missing `/etc/shells` crashed the script (`set -e`) | `touch` + `grep 2>/dev/null` |
+| 7 | `HISTFILE` declared `readonly` without a value | Defined, exported, with `HISTSIZE=500` |
+| 8 | No result validation | Automatic login test at the end |
 
 ---
 
-## 🧹 Remover o usuário
+## ⚠️ Known limitations
+
+`rbash` is a **light barrier**, not a sandbox. Read this before using it in production:
+
+- **Never add** commands capable of running a shell: `awk` (with `system()`), `sed` with the `e` flag, `find -exec`, `xargs`, `man`, `vi/vim`, `python`, `perl`, `less`, `more`, `ssh`, `scp`.
+- **Kernel escalation**: kernel vulnerabilities (Dirty Pipe, etc.) bypass any shell restriction.
+- **Physical/console attacks**: if the user has console access, `Ctrl+C`/`Ctrl+Z` and signal handling in `rbash` are limited but not invulnerable.
+- **For real isolation**, use one of the options below (in order of preference):
+  1. **Container** (Docker/Podman) with user namespace and read-only rootfs;
+  2. **`chroot`** into a minimal filesystem;
+  3. **`sudo` with an allowlist** (`sudo -l`) instead of a restricted shell;
+  4. Service accounts with **forced SSH keys** + `ForceCommand`.
+
+---
+
+## 🧹 Removing the user
 
 ```bash
 sudo userdel -r suporte01
 ```
 
-Se o usuário estiver logado, encerre as sessões antes:
+If the user is logged in, end the sessions first:
 
 ```bash
 sudo pkill -u suporte01
@@ -218,7 +219,7 @@ sudo userdel -r suporte01
 
 ---
 
-## 📄 Licença
+## 📄 License
 
-Distribuído sob os termos do repositório **[scriptz](https://github.com/charles-josiah/scriptz)**.
-Fornecido para fins de referência — **teste em ambiente não-produção antes de usar em produção.**
+Distributed under the terms of the **[scriptz](https://github.com/charles-josiah/scriptz)** repository.
+Provided for reference purposes only — **test in a non-production environment before using in production.**
