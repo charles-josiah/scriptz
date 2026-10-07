@@ -2,10 +2,10 @@
 
 # ==========================================
 # CRIAR USUÁRIO RESTRITO COM RBASH (v2)
-# Versão corrigida — ver análise de segurança
+# Restricted Linux user with rbash — corrected version
 #
-# Autor:  Charles Josiah (https://github.com/charles-josiah)
-# Colaboração: Fabio Ferreira (https://github.com/cwbffm)
+# Author:   Charles Josiah (https://github.com/charles-josiah)
+# Co-author: Fabio Ferreira (https://github.com/cwbffm)
 # ==========================================
 
 set -euo pipefail

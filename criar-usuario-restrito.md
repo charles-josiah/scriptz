@@ -2,7 +2,7 @@
 
 > Cria um usuário Linux com shell restrito (`rbash`), expondo **somente** uma lista branca de comandos de leitura/monitoramento — ideal para kiosks, ambientes de suporte, acesso temporário de fornecedores e auditores.
 >
-> **Desenvolvido por** [Charles Josiah](https://github.com/charles-josiah) **em colaboração com** [Fabio Ferreira](https://github.com/cwbffm).
+> **Developed by** [Charles Josiah](https://github.com/charles-josiah) **in collaboration with** [Fabio Ferreira](https://github.com/cwbffm).
 
 ---
 
@@ -207,14 +207,14 @@ sudo userdel -r suporte01
 
 ---
 
-## 👥 Autoria e contribuições
+## 👥 Authors and contributors
 
-| Papel | Pessoa | GitHub |
-|-------|--------|--------|
-| Autor | Charles Josiah | [@charles-josiah](https://github.com/charles-josiah) |
-| Colaborador no desenvolvimento | **Fabio Ferreira** | [@cwbffm](https://github.com/cwbffm) |
+| Role | Person | GitHub |
+|------|--------|--------|
+| Author | Charles Josiah | [@charles-josiah](https://github.com/charles-josiah) |
+| Co-author / development contributor | **Fabio Ferreira** | [@cwbffm](https://github.com/cwbffm) |
 
-> Agradecimento especial a **Fabio Ferreira** ([github.com/cwbffm](https://github.com/cwbffm)) pela colaboração no desenvolvimento deste script.
+> Special thanks to **Fabio Ferreira** ([github.com/cwbffm](https://github.com/cwbffm)) for co-developing this script.
 
 ---
 
