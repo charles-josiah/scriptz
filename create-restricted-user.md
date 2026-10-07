@@ -1,4 +1,4 @@
-# criar-usuario-restrito.sh
+# create-restricted-user.sh
 
 > Creates a Linux user with a restricted shell (`rbash`), exposing **only** a whitelisted set of read-only/monitoring commands — ideal for kiosks, support environments, and temporary vendor/auditor access.
 >
@@ -54,8 +54,8 @@ The script automates the creation of a **restricted** Linux user:
 ```bash
 git clone https://github.com/charles-josiah/scriptz.git
 cd scriptz
-chmod +x criar-usuario-restrito.sh
-sudo ./criar-usuario-restrito.sh
+chmod +x create-restricted-user.sh
+sudo ./create-restricted-user.sh
 ```
 
 Expected output:

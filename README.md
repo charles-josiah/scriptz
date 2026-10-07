@@ -33,7 +33,7 @@ General, Brilliant, Generic Scripts and some technical adaptations  :D <br>
  <li> renova_certificado.sh - Another script to auto-renew certificate </li>
  <li> another_docker_installer.sh - Yet another Docker & Docker Compose installation script</li>
  <li> create_user.md - Active Directory Bulk User Creation Script</li> 
- <li> criar-usuario-restrito.sh - Creates a restricted Linux user with rbash and a whitelisted set of read-only commands, with locked-down permissions and automatic rollback on failure. Full docs: <a href="criar-usuario-restrito.md">criar-usuario-restrito.md</a></li>
+ <li> create-restricted-user.sh - Creates a restricted Linux user with rbash and a whitelisted set of read-only commands, with locked-down permissions and automatic rollback on failure. Full docs: <a href="create-restricted-user.md">create-restricted-user.md</a></li>
  
 </ul>
 Dir ./aws starting a collection (that way) of scripts for AWS.
